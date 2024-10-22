@@ -1,0 +1,40 @@
+/* home.css */
+.container-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.row > div {
+    flex: 1 1 1%; /* Allows flexible, responsive card sizing */
+   
+    border: px solid #ddd;
+  
+    text-align: left;
+   
+    
+}
+
+.card img{
+    width: 90%;
+    height: 150px;
+    border-radius: 2px;
+}
+
+.card h5, .card p {
+    margin-bottom: 1px;
+    font-weight: bold;
+}
+
+.card .btn {
+    
+    color: #fff;
+    background-color: #2200ff;
+    border: none;
+    padding: 2px 2px;
+    border-radius: 7px;
+}
+
+.card .btn:hover {
+    background-color: #03b300;
+}

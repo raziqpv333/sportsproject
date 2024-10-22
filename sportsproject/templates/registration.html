@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+
+</head>
+<style>
+    body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+margin: 0;
+padding: 0;
+}
+
+.container {
+width: 300px;
+margin: 10px auto;
+padding: 20px;
+background-color: #94c3d9;
+border-radius: 15px;
+}
+
+h2 {
+text-align: center;
+color: #333;
+}
+
+form {
+display: flex;
+flex-direction: column;
+}
+
+form input {
+margin: 10px 0;
+padding: 15px;
+border: 1px solid #900b0b;
+border-radius: 15px;
+}
+
+button {
+padding: 10px;
+background-color: #15b015;
+color: rgb(18, 20, 21);
+border: none;
+border-radius: 15px;
+cursor: pointer;
+}
+
+button:hover {
+     
+background-color: #ab061a;
+}
+</style>
+
+<body>
+    <form action="" method="post">
+        {%csrf_token%}
+       
+       
+    </form>
+
+
+   
+    <div class="container">
+        <h2>Registration</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="name">
+                <input type="text" name="name" id="" placeholder="Name" >
+    
+            </div>
+            <div class="email">
+                <input type="text" name="email" id="" placeholder="Email" >
+    
+            </div>
+           
+    
+            
+            <div class="username">
+                <input type="text" name="username" id="" placeholder="Username" >
+    
+            </div>
+            <div class="password" >
+            <input type="password" name="password" id="" placeholder="Password">
+            <div class="p">
+                <p>Already have a accout <a href="/">Login</a></p>
+            </div>
+    
+            <div class="link">
+                <a href="registration.html">need an account</a>
+                
+            </div><br>
+    
+          
+            <button type="submit">Register</button>
+            {{ form.as_p }}
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
