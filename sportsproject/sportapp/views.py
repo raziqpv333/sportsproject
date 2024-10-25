@@ -14,9 +14,12 @@ def login(req):
     if req.method=='POST':
         name=req.POST['username']
         password=req.POST['password']
+        print(name,password)
         data=authenticate(username=name,password=password)
+        print(data)
         if data is not None:
             req.session['user']=name
+            print("abc")
 
             auth_login(req,data)
             return redirect(home)
@@ -34,7 +37,7 @@ def registration(request):
         email=request.POST['email']
         username=request.POST['username']
         password=request.POST['password']
-        data=User.objects.create(first_name=name,email=email,username=username,password=password)
+        data=User.objects.create_user(first_name=name,email=email,username=username,password=password)
         data.save()
     return render(request,'registration.html')
 def contact_view(request):
@@ -60,14 +63,13 @@ def logout(req):
 
 def viewproduct(req,id):
     a=Products.objects.get(pk=id)
-    if req.method=='POST':
-        name=req.method.POST['name']
-        price=int(req.POST['age'])
-        stock=int(req.POST['stock'])
-        category=int(req.POST['category'])
-        Products.objects.filter(pk=id).update(name=name,price=price,stock=stock,category=category)
-        return redirect(Products)
-    return render(req,"viewproduct.html",{'a':a})
+    user=User.objects.get(username=req.session['user'])
+    try:
+        d=cartitems.objects.get(product=a,user=user)
+        return render(req,"viewproduct.html",{'a':a,'d':d})
+
+    except:
+        return render(req,"viewproduct.html",{'a':a})
 def cartdisplay(req):
     user=User.objects.get(username=req.session['user'])
     b=cartitems.objects.filter(user=user)
@@ -88,6 +90,8 @@ def addtocart(req,id):
 def ingrement(req,id):
     f=cartitems.objects.get(pk=id)
     f.quantity+=1
+    f.totalprice=f.quantity*f.product.price
+ 
     f.save()
     # for i in f:
     print(f.quantity)
@@ -97,8 +101,10 @@ def degrement(req,id):
     g=cartitems.objects.get(pk=id)
     if g.quantity>1:
        g.quantity-=1
+       g.totalprice=g.quantity*g.product.price
        g.save()
        print(g.quantity)
+
     
 
     return redirect(cartdisplay)   
@@ -117,10 +123,11 @@ def address_info(request,id,cid):
         state = request.POST.get('state')
         pin_code = request.POST.get('pin_code')
         land_mark = request.POST.get('land_mark')
-        bookingdate=request.POST.get('bookingdate')
         f=cartitems.objects.get(pk=cid)
+        w.stock-=f.quantity
+        w.save()
         
-        data=buy.objects.create(address=address,phno=phone_no,state=state,pincode=pin_code ,user=user,landmark=land_mark,bookingdate=bookingdate,quantity=f.quantity,price=f.totalprice,cartitems=f)
+        data=buy.objects.create(address=address,phno=phone_no,state=state,pincode=pin_code ,user=user,landmark=land_mark,quantity=f.quantity,price=f.totalprice,cartitems=f)
         data.save()
         return redirect(my_orders)
 

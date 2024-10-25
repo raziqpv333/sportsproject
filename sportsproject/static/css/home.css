@@ -8,7 +8,7 @@
 .row > div {
     flex: 1 1 1%; /* Allows flexible, responsive card sizing */
    
-    border: px solid #ddd;
+    border: px solid #49b8c5;
   
     text-align: left;
    
@@ -16,8 +16,8 @@
 }
 
 .card img{
-    width: 90%;
-    height: 150px;
+    width: 50%;
+    height: 10px;
     border-radius: 2px;
 }
 
@@ -28,7 +28,7 @@
 
 .card .btn {
     
-    color: #fff;
+    color: #7e0707;
     background-color: #2200ff;
     border: none;
     padding: 2px 2px;

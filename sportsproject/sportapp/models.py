@@ -41,6 +41,6 @@ class buy(models.Model):
     phno=models.IntegerField()
     state=models.TextField()
     landmark=models.TextField()
-    bookingdate=models.DateField(auto_created=True)
+    bookingdate=models.DateField(auto_now=True)
 
 
