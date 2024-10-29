@@ -40,15 +40,16 @@
                
               
                 <ul class="dropdown-menu">
-                  <!-- <li><a class="dropdown-item" href="">my orders</a></li> -->
+                
                   <li><a class="dropdown-item" href="{% url 'my_orders' %}">My Orders</a></li>
 
-                  <li><a class="dropdown-item" href="../logout">Logout</a>
-                    </li>
+                  <li><a class="dropdown-item" href="../logout">Logout</a></li>
                 </ul>
+                 </li>
+               
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="" aria-label="Shopping Cart">
+                <a class="nav-link" href="../../cartdis/" aria-label="Shopping Cart">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </li>
@@ -61,7 +62,7 @@
         <div class="row sam">
             {% for i in a %}
             <div class="col-md-4 ">
-                <div class="card">
+                <div class="card-img">
                     <img class="image card-img-top" src="{{i.image.url}}" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{i.name}}</h5>

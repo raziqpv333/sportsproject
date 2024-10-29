@@ -42,5 +42,6 @@ class buy(models.Model):
     state=models.TextField()
     landmark=models.TextField()
     bookingdate=models.DateField(auto_now=True)
+    orderstatus=models.BooleanField(default=True)
 
 

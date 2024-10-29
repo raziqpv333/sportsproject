@@ -137,7 +137,7 @@ def address_info(request,id,cid):
 
 def delete(req,cid):
     d=cartitems.objects.get(pk=cid)
-    d=delete()
+    d.delete()
     return redirect(cartdisplay)
  
 
@@ -146,3 +146,9 @@ def my_orders(request):
     user=User.objects.get(username=request.session['user'])
     b=buy.objects.filter(user=user)
     return render(request, 'myorders.html', {'b': b})
+
+def cancel_order(req,id):
+    b=buy.objects.get(pk=id)
+    b.orderstatus=False
+    b.save()
+    return redirect(my_orders)
