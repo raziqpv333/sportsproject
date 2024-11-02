@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import *
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
 
 # Create your views here.
 
@@ -126,7 +129,7 @@ def address_info(request,id,cid):
         f=cartitems.objects.get(pk=cid)
         w.stock-=f.quantity
         w.save()
-        
+        send_mail('orederplaced',w.name,settings.EMAIL_HOST_USER,[user.email])
         data=buy.objects.create(address=address,phno=phone_no,state=state,pincode=pin_code ,user=user,landmark=land_mark,quantity=f.quantity,price=f.totalprice,cartitems=f)
         data.save()
         return redirect(my_orders)
@@ -152,3 +155,19 @@ def cancel_order(req,id):
     b.orderstatus=False
     b.save()
     return redirect(my_orders)
+
+def profile(req):
+    if req.method=='POST':
+        name=req.POST['name']
+        password=req.POST['password']
+        g=User.objects.get(username=req.session['user'])
+        g.username=name
+        if password:
+            g.set_password(password)
+        g.save()
+        messages.success(req,'profile updated successfully')
+        return redirect(profile)
+
+    return render(req, 'profile.html')
+        
+    

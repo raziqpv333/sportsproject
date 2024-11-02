@@ -45,3 +45,5 @@ class buy(models.Model):
     orderstatus=models.BooleanField(default=True)
 
 
+
+

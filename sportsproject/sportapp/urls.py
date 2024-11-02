@@ -20,7 +20,9 @@ urlpatterns=[
     path('address/<int:id>/<int:cid>',views.address_info,name='addressinfo'),
     path("delete/<cid>",views.delete),
     path('my_orders/', views.my_orders, name='my_orders'),
-    path('cancel_order/<int:id>',views.cancel_order,name='cancel_orders')
+    path('cancel_order/<int:id>',views.cancel_order,name='cancel_orders'),
+    path('profile',views.profile),
+    # path('updateprofile',views.updateprofile)
 
 
  

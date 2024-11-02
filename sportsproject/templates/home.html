@@ -42,7 +42,7 @@
                 <ul class="dropdown-menu">
                 
                   <li><a class="dropdown-item" href="{% url 'my_orders' %}">My Orders</a></li>
-
+                  <li><a class="dropdown-item" href="profile">profile</a></li>
                   <li><a class="dropdown-item" href="../logout">Logout</a></li>
                 </ul>
                  </li>
@@ -57,6 +57,12 @@
           </div>
         </div>
     </nav>
+    <!-- <div class="row1">
+      <div class="card text-bg-dark">
+        <img src="background" class="card-img" alt="...">
+        <div class="card-img-overlay">
+
+    </div> -->
 
     <div class="container mt-4">
         <div class="row sam">
@@ -67,9 +73,6 @@
                     <div class="card-body">
                         <h5 class="card-title">{{i.name}}</h5>
                         <p class="card-text">Price: ${{i.price}}</p>
-                       
-                     
-                        
                         <a href="../viewproduct/{{i.pk}}" class="btn btn-primary">View Product</a>
                     </div>
                 </div>
